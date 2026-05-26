@@ -108,11 +108,15 @@
     <i class="ti ti-chevron-right map-arrow"></i>
   </a>
 
-  <p class="section-title">店家收件信箱</p>
+  <p class="section-title">後台信箱設定</p>
   <div class="card">
+    <div class="field">
+      <label for="chef-email">🍳 廚師信箱 * <span style="font-size:11px;color:#aaa">（只收餐點與數量）</span></label>
+      <input type="email" id="chef-email" placeholder="chef@example.com">
+    </div>
     <div class="field" style="margin-bottom:0">
-      <label for="store-email">訂單將寄送至此信箱 <span style="font-size:11px;color:#aaa">（店家設定）</span></label>
-      <input type="email" id="store-email" placeholder="store@example.com">
+      <label for="cashier-email">🧾 櫃台信箱 * <span style="font-size:11px;color:#aaa">（完整訂單含金額）</span></label>
+      <input type="email" id="cashier-email" placeholder="cashier@example.com">
     </div>
   </div>
 
@@ -227,24 +231,29 @@
   </div>
 
   <div class="hint-box">
-    💡 按下「送出訂單」後，系統會自動開啟您的 Email 程式，訂單內容已自動填入，直接按送出即可。不需要任何帳號或金鑰。
+    💡 按下「送出訂單」後，系統會<strong>依序開啟兩封 Email</strong>：第一封寄給廚師（餐點明細），第二封寄給櫃台（完整訂單）。每封確認後按送出即可，不需要任何帳號或金鑰。
   </div>
 
   <button class="submit-btn" id="submit-btn" onclick="submitOrder()">📨 送出訂單</button>
 
   <div class="success-card" id="success-card">
     <i class="ti ti-circle-check success-icon"></i>
-    <div class="success-title">Email 已開啟，請確認後送出！</div>
+    <div class="success-title">兩封 Email 已依序開啟！</div>
     <div class="success-sub" id="success-sub"></div>
-    <button class="copy-btn" onclick="copyOrder()"><i class="ti ti-copy"></i> 複製訂單內容</button>
-    <div class="order-box" id="order-box"></div>
+    <button class="copy-btn" onclick="copyOrder()"><i class="ti ti-copy"></i> 複製完整訂單</button>
+    <div style="margin-top:14px;text-align:left">
+      <div style="font-size:12px;font-weight:600;color:#555;margin-bottom:6px">🍳 廚師收到的內容：</div>
+      <div class="order-box" id="chef-box"></div>
+      <div style="font-size:12px;font-weight:600;color:#555;margin:12px 0 6px">🧾 櫃台收到的內容：</div>
+      <div class="order-box" id="cashier-box"></div>
+    </div>
   </div>
 
 </div>
 
 <script>
 let pickupMode = 'self';
-let lastOrderText = '';
+let lastCashierText = '';
 
 function setPickup(mode, btn) {
   pickupMode = mode;
@@ -293,24 +302,45 @@ function getItems() {
   return items;
 }
 
-function buildOrderText(name, phone, items, total, modeLabel, pay, note, utensils) {
+// 廚師信：只有餐點與數量
+function buildChefText(name, items, note) {
+  const now = new Date().toLocaleString('zh-TW', { hour12: false });
+  const lines = items.map(i => `  ${i.name} × ${i.qty} 份`).join('\n');
+  const noteStr = note ? `\n\n備註：${note}` : '';
+  return `【備餐通知】${now}\n訂購人：${name}\n\n━━ 餐點明細 ━━\n${lines}${noteStr}\n\n請盡快備餐，謝謝！`;
+}
+
+// 櫃台信：完整訂單含金額付款
+function buildCashierText(name, phone, items, total, modeLabel, pay, note, utensils) {
+  const now = new Date().toLocaleString('zh-TW', { hour12: false });
   const lines = items.map(i => `  ${i.name} × ${i.qty} 份　$${i.price * i.qty}`).join('\n');
   const noteStr = note ? `\n備註：${note}` : '';
   const utensilStr = utensils ? '\n索取餐具：是' : '';
-  return `【隆隆排骨便當 線上訂單】\n\n訂購人：${name}\n電話：${phone}\n取餐方式：${modeLabel}\n付款方式：${pay}${utensilStr}\n\n━━ 訂單明細 ━━\n${lines}\n─────────────\n總計金額：$${total}${noteStr}\n\n感謝惠顧！`;
+  return `【隆隆排骨便當 線上訂單】${now}\n\n訂購人：${name}\n電話：${phone}\n取餐方式：${modeLabel}\n付款方式：${pay}${utensilStr}\n\n━━ 訂單明細 ━━\n${lines}\n─────────────\n總計金額：$${total}${noteStr}\n\n請備妥結帳，謝謝！`;
+}
+
+function openMailto(to, subject, body) {
+  const link = document.createElement('a');
+  link.href = `mailto:${encodeURIComponent(to)}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  link.target = '_blank';
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
 }
 
 function submitOrder() {
   const name = document.getElementById('name').value.trim();
   const phone = document.getElementById('phone').value.trim();
-  const storeEmail = document.getElementById('store-email').value.trim();
+  const chefEmail = document.getElementById('chef-email').value.trim();
+  const cashierEmail = document.getElementById('cashier-email').value.trim();
   const custEmail = document.getElementById('email').value.trim();
   const note = document.getElementById('note').value.trim();
   const utensils = document.getElementById('utensils').checked;
   const pay = document.getElementById('pay').value;
 
   if (!name || !phone) { alert('請填寫姓名與電話'); return; }
-  if (!storeEmail || !storeEmail.includes('@')) { alert('請填寫店家收件信箱'); return; }
+  if (!chefEmail || !chefEmail.includes('@')) { alert('請填寫廚師信箱'); return; }
+  if (!cashierEmail || !cashierEmail.includes('@')) { alert('請填寫櫃台信箱'); return; }
   const items = getItems();
   if (items.length === 0) { alert('請至少選擇一項餐點'); return; }
 
@@ -318,26 +348,39 @@ function submitOrder() {
   const sub = items.reduce((s, i) => s + i.price * i.qty, 0);
   const total = sub + dlv;
   const modeLabel = pickupMode === 'self' ? '門市自取' : pickupMode === 'delivery' ? '外送到府' : '外帶';
-  const orderText = buildOrderText(name, phone, items, total, modeLabel, pay, note, utensils);
-  lastOrderText = orderText;
 
-  const subject = encodeURIComponent(`【訂單】${name} — 隆隆排骨便當`);
-  const body = encodeURIComponent(orderText);
-  const cc = custEmail && custEmail.includes('@') ? `&cc=${encodeURIComponent(custEmail)}` : '';
-  window.location.href = `mailto:${encodeURIComponent(storeEmail)}?subject=${subject}${cc}&body=${body}`;
+  const chefText = buildChefText(name, items, note);
+  const cashierText = buildCashierText(name, phone, items, total, modeLabel, pay, note, utensils);
+  lastCashierText = cashierText;
 
-  document.getElementById('success-sub').textContent = `Email 程式已開啟，收件人：${storeEmail}${custEmail ? '，已 CC：' + custEmail : ''}。請確認內容後按送出。`;
-  document.getElementById('order-box').textContent = orderText;
+  // 開啟廚師信
+  openMailto(chefEmail, `【備餐】${name} 的訂單`, chefText);
+
+  // 稍後開啟櫃台信（延遲避免被瀏覽器封鎖）
+  setTimeout(() => {
+    const cc = custEmail && custEmail.includes('@') ? `&cc=${encodeURIComponent(custEmail)}` : '';
+    const link = document.createElement('a');
+    link.href = `mailto:${encodeURIComponent(cashierEmail)}?subject=${encodeURIComponent(`【結帳】${name} — $${total}`)}&body=${encodeURIComponent(cashierText)}${cc}`;
+    link.target = '_blank';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  }, 1500);
+
+  document.getElementById('success-sub').textContent =
+    `✅ 第一封已開啟（廚師：${chefEmail}），1.5秒後開啟第二封（櫃台：${cashierEmail}）${custEmail ? '，已 CC 給客人' : ''}。請各自確認後送出。`;
+  document.getElementById('chef-box').textContent = chefText;
+  document.getElementById('cashier-box').textContent = cashierText;
   document.getElementById('success-card').style.display = 'block';
   document.getElementById('success-card').scrollIntoView({ behavior: 'smooth' });
 }
 
 function copyOrder() {
-  if (!lastOrderText) return;
-  navigator.clipboard.writeText(lastOrderText).then(() => {
+  if (!lastCashierText) return;
+  navigator.clipboard.writeText(lastCashierText).then(() => {
     const btn = document.querySelector('.copy-btn');
     btn.innerHTML = '<i class="ti ti-check"></i> 已複製！';
-    setTimeout(() => { btn.innerHTML = '<i class="ti ti-copy"></i> 複製訂單內容'; }, 2000);
+    setTimeout(() => { btn.innerHTML = '<i class="ti ti-copy"></i> 複製完整訂單'; }, 2000);
   });
 }
 

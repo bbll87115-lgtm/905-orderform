@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="zh-TW">
 <head>
@@ -399,9 +400,8 @@
   </div>
 
   <div class="hint-box">
-    📧 按下「送出訂單」後，系統會使用 <strong>Gmail 網頁版</strong>依序開啟兩個新分頁：
-    第一封寄給廚師（僅餐點明細），第二封寄給櫃台（完整訂單）。
-    請在每個分頁確認後按送出。
+    📧 按下「送出訂單」後，系統會依序開啟 <strong>最多三個 Gmail 分頁</strong>：<br>
+    第 1 封 → 廚師（僅餐點）　第 2 封 → 櫃台（完整訂單）　第 3 封 → 客戶確認信（需填信箱）
   </div>
 
   <button class="submit-btn" id="submit-btn" onclick="submitOrder()">
@@ -420,6 +420,8 @@
     <div class="order-box" id="chef-preview"></div>
     <div class="preview-label">🧾 櫃台收到的內容：</div>
     <div class="order-box" id="cashier-preview"></div>
+    <div class="preview-label" id="cust-preview-label" style="display:none">📩 客戶收到的內容：</div>
+    <div class="order-box" id="cust-preview" style="display:none"></div>
   </div>
 
 </div>
@@ -495,6 +497,14 @@
     return `【隆隆排骨便當 線上訂單】${now}\n\n訂購人：${name}\n電話：${phone}\n取餐方式：${modeLabel}\n付款方式：${pay}${utensilStr}\n\n── 訂單明細 ──\n${lines}\n──────────────\n總計金額：NT$${total}${noteStr}\n\n請備妥結帳，謝謝！`;
   }
 
+  /* ── 建立客戶確認信內文 ── */
+  function buildCustomerBody(name, items, total, modeLabel, pay, note) {
+    const now   = new Date().toLocaleString('zh-TW', { hour12: false });
+    const lines = items.map(i => `  ${i.name} x ${i.qty} 份  NT$${i.price * i.qty}`).join('\n');
+    const noteStr = note ? `\n備註：${note}` : '';
+    return `親愛的 ${name} 您好，\n\n感謝您向隆隆排骨便當訂購，以下是您的訂單明細：\n\n── 訂單明細 ──\n${lines}\n──────────────\n總計金額：NT$${total}\n取餐方式：${modeLabel}\n付款方式：${pay}${noteStr}\n\n訂單時間：${now}\n店家地址：桃園市龍潭區中正里龍華路460號\n\n如有任何問題請與我們聯繫。\n感謝惠顧，祝您用餐愉快！\n\n隆隆排骨便當 敬上`;
+  }
+
   /* ── 開啟 Gmail 網頁版 ── */
   function openGmail(to, subject, body, cc) {
     let url = 'https://mail.google.com/mail/?view=cm&fs=1'
@@ -531,22 +541,36 @@
 
     const chefBody    = buildChefBody(name, items, note);
     const cashierBody = buildCashierBody(name, phone, items, total, modeLabel, pay, note, utensils);
+    const custBody    = custEmail ? buildCustomerBody(name, items, total, modeLabel, pay, note) : '';
     lastCashierText   = cashierBody;
 
-    /* 開啟第一封（廚師） */
+    /* 第一封（廚師） */
     openGmail(chefEmail, `【備餐】${name} 的訂單`, chefBody, '');
 
-    /* 1.5 秒後開啟第二封（櫃台） */
+    /* 1.5 秒後第二封（櫃台） */
     setTimeout(() => {
-      openGmail(cashierEmail, `【結帳】${name} — NT$${total}`, cashierBody, custEmail);
+      openGmail(cashierEmail, `【結帳】${name} — NT$${total}`, cashierBody, '');
     }, 1500);
 
+    /* 3 秒後第三封（客戶確認信，僅限有填信箱） */
+    if (custEmail && custEmail.includes('@')) {
+      setTimeout(() => {
+        openGmail(custEmail, `【訂單確認】隆隆排骨便當 — NT$${total}`, custBody, '');
+      }, 3000);
+    }
+
     /* 顯示成功卡片 */
+    const custMsg = custEmail ? `，3 秒後開啟第三封（客戶確認信：${custEmail}）` : '（未填客戶信箱，不寄確認信）';
     document.getElementById('success-sub').textContent =
-      `第一封（廚師）已開啟，1.5 秒後開啟第二封（櫃台：${cashierEmail}）${custEmail ? '，已 CC：' + custEmail : ''}。請各自確認後按送出。`;
+      `第一封（廚師）已開啟 → 1.5 秒後第二封（櫃台）${custMsg}。請各自確認後按送出。`;
     document.getElementById('chef-preview').textContent    = chefBody;
     document.getElementById('cashier-preview').textContent = cashierBody;
-    document.getElementById('success-card').style.display  = 'block';
+    if (custEmail && custEmail.includes('@')) {
+      document.getElementById('cust-preview-label').style.display = 'block';
+      document.getElementById('cust-preview').style.display       = 'block';
+      document.getElementById('cust-preview').textContent         = custBody;
+    }
+    document.getElementById('success-card').style.display = 'block';
     document.getElementById('success-card').scrollIntoView({ behavior: 'smooth' });
   }
 

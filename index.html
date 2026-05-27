@@ -10,18 +10,14 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     body {
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans TC", sans-serif;
-      background: #f0f0f0;
-      color: #1a1a1a;
-      min-height: 100vh;
-      padding: 1.5rem 1rem 3rem;
+      background: #f0f0f0; color: #1a1a1a;
+      min-height: 100vh; padding: 1.5rem 1rem 3rem;
     }
     .wrap { max-width: 620px; margin: 0 auto; }
 
-    /* Header */
     .store-header {
       display: flex; align-items: center; gap: 14px;
-      background: #fff; border-radius: 16px;
-      border: 1px solid #e0e0e0;
+      background: #fff; border-radius: 16px; border: 1px solid #e0e0e0;
       padding: 1.1rem 1.4rem; margin-bottom: .5rem;
       box-shadow: 0 1px 4px rgba(0,0,0,.06);
     }
@@ -34,14 +30,11 @@
     .store-title { font-size: 17px; font-weight: 700; }
     .store-addr { font-size: 12px; color: #777; margin-top: 3px; }
 
-    /* Map button */
     .map-btn {
       display: flex; align-items: center; gap: 14px;
-      background: #fff; border: 1px solid #e0e0e0;
-      border-radius: 14px; padding: 13px 16px;
-      text-decoration: none; margin-bottom: .5rem;
-      transition: background .15s;
-      box-shadow: 0 1px 4px rgba(0,0,0,.05);
+      background: #fff; border: 1px solid #e0e0e0; border-radius: 14px;
+      padding: 13px 16px; text-decoration: none; margin-bottom: .5rem;
+      transition: background .15s; box-shadow: 0 1px 4px rgba(0,0,0,.05);
     }
     .map-btn:hover { background: #f7f7f7; }
     .map-pin-wrap {
@@ -54,50 +47,40 @@
     .map-label-title { font-size: 14px; font-weight: 600; color: #1a1a1a; }
     .map-label-sub { font-size: 12px; color: #888; margin-top: 2px; }
 
-    /* Section */
     .sec-title {
       font-size: 11px; font-weight: 700; color: #888;
       text-transform: uppercase; letter-spacing: .07em;
       margin: 1.3rem 0 .45rem .2rem;
     }
     .card {
-      background: #fff; border: 1px solid #e0e0e0;
-      border-radius: 14px; padding: 1rem 1.25rem;
-      box-shadow: 0 1px 4px rgba(0,0,0,.05);
+      background: #fff; border: 1px solid #e0e0e0; border-radius: 14px;
+      padding: 1rem 1.25rem; box-shadow: 0 1px 4px rgba(0,0,0,.05);
     }
     .row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
     .field { display: flex; flex-direction: column; gap: 5px; margin-bottom: 12px; }
     .field:last-child { margin-bottom: 0; }
     .field label { font-size: 13px; color: #555; font-weight: 500; }
     .field input, .field select, .field textarea {
-      font-size: 14px; padding: 9px 12px;
-      border: 1px solid #ddd; border-radius: 9px;
-      outline: none; width: 100%; font-family: inherit;
-      background: #fafafa; color: #1a1a1a; transition: border .15s;
+      font-size: 14px; padding: 9px 12px; border: 1px solid #ddd;
+      border-radius: 9px; outline: none; width: 100%;
+      font-family: inherit; background: #fafafa; color: #1a1a1a; transition: border .15s;
     }
     .field input:focus, .field select:focus, .field textarea:focus {
       border-color: #999; background: #fff;
     }
     .field textarea { resize: vertical; min-height: 68px; }
-    .hint-tag {
-      font-size: 11px; color: #aaa; font-weight: 400; margin-left: 4px;
-    }
+    .hint-tag { font-size: 11px; color: #aaa; font-weight: 400; margin-left: 4px; }
 
-    /* Pickup tabs */
     .pickup-tabs { display: flex; gap: 8px; margin-bottom: 12px; }
     .pickup-tab {
-      flex: 1; padding: 9px 4px;
-      border: 1px solid #ddd; border-radius: 9px;
-      background: none; cursor: pointer;
-      font-size: 13px; color: #777; font-family: inherit;
-      transition: all .15s;
+      flex: 1; padding: 9px 4px; border: 1px solid #ddd; border-radius: 9px;
+      background: none; cursor: pointer; font-size: 13px; color: #777;
+      font-family: inherit; transition: all .15s;
     }
     .pickup-tab.active {
-      border-color: #333; background: #f0f0f0;
-      color: #1a1a1a; font-weight: 600;
+      border-color: #333; background: #f0f0f0; color: #1a1a1a; font-weight: 600;
     }
 
-    /* Menu items */
     .menu-item {
       display: flex; align-items: center; gap: 10px;
       padding: 10px 0; border-bottom: 1px solid #f0f0f0;
@@ -105,8 +88,8 @@
     .menu-item:last-child { border-bottom: none; }
     .menu-thumb {
       width: 42px; height: 42px; border-radius: 10px;
-      background: #f5f5f5; display: flex;
-      align-items: center; justify-content: center; flex-shrink: 0;
+      background: #f5f5f5; display: flex; align-items: center;
+      justify-content: center; flex-shrink: 0;
     }
     .menu-thumb i { font-size: 20px; color: #ccc; }
     .menu-info { flex: 1; }
@@ -114,52 +97,53 @@
     .menu-price { font-size: 12px; color: #888; margin-top: 1px; }
     .qty-ctrl { display: flex; align-items: center; gap: 7px; }
     .qty-ctrl button {
-      width: 30px; height: 30px; border-radius: 50%;
-      border: 1px solid #ddd; background: #fff; cursor: pointer;
-      font-size: 18px; display: flex; align-items: center;
-      justify-content: center; color: #333; line-height: 1;
-      font-family: inherit; transition: background .12s;
+      width: 30px; height: 30px; border-radius: 50%; border: 1px solid #ddd;
+      background: #fff; cursor: pointer; font-size: 18px;
+      display: flex; align-items: center; justify-content: center;
+      color: #333; line-height: 1; font-family: inherit; transition: background .12s;
     }
     .qty-ctrl button:hover { background: #f5f5f5; }
     .qty-val { font-size: 15px; font-weight: 700; min-width: 22px; text-align: center; }
     .item-subtotal { font-size: 14px; font-weight: 600; min-width: 50px; text-align: right; }
 
-    /* Summary */
-    .sum-row {
-      display: flex; justify-content: space-between;
-      font-size: 14px; color: #777; padding: 5px 0;
-    }
+    .sum-row { display: flex; justify-content: space-between; font-size: 14px; color: #777; padding: 5px 0; }
     .sum-row.highlight {
       font-size: 17px; font-weight: 700; color: #1a1a1a;
       padding-top: 11px; border-top: 1px solid #eee; margin-top: 5px;
     }
-    .sum-item-rows { margin-bottom: 4px; }
 
-    /* Hint */
     .hint-box {
-      background: #fffbeb; border: 1px solid #fde68a;
-      border-radius: 11px; padding: .75rem 1rem;
-      font-size: 13px; color: #92400e;
+      background: #fffbeb; border: 1px solid #fde68a; border-radius: 11px;
+      padding: .75rem 1rem; font-size: 13px; color: #92400e;
       margin-top: .75rem; line-height: 1.65;
     }
 
-    /* Submit */
     .submit-btn {
-      width: 100%; padding: 14px;
-      background: #1a1a1a; color: #fff;
-      border: none; border-radius: 12px;
-      font-size: 16px; font-weight: 700;
-      cursor: pointer; margin-top: 1.25rem;
-      font-family: inherit; letter-spacing: .02em;
-      transition: opacity .15s;
+      width: 100%; padding: 14px; background: #1a1a1a; color: #fff;
+      border: none; border-radius: 12px; font-size: 16px; font-weight: 700;
+      cursor: pointer; margin-top: 1.25rem; font-family: inherit;
+      letter-spacing: .02em; transition: opacity .15s;
     }
     .submit-btn:hover { opacity: .85; }
     .submit-btn:disabled { opacity: .4; cursor: default; }
 
-    /* Success */
+    /* Loading overlay */
+    .loading-overlay {
+      display: none; position: fixed; inset: 0;
+      background: rgba(0,0,0,.45); z-index: 999;
+      align-items: center; justify-content: center; flex-direction: column; gap: 14px;
+    }
+    .loading-overlay.show { display: flex; }
+    .spinner {
+      width: 48px; height: 48px; border: 4px solid rgba(255,255,255,.3);
+      border-top-color: #fff; border-radius: 50%;
+      animation: spin .8s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .loading-text { color: #fff; font-size: 15px; font-weight: 600; }
+
     .success-card {
-      display: none;
-      border: 1px solid #bbf7d0; border-radius: 14px;
+      display: none; border: 1px solid #bbf7d0; border-radius: 14px;
       padding: 1.4rem 1.25rem; text-align: center;
       background: #f0fdf4; margin-top: 1rem;
       box-shadow: 0 1px 4px rgba(0,0,0,.05);
@@ -167,25 +151,20 @@
     .success-icon { font-size: 38px; color: #16a34a; display: block; margin-bottom: 8px; }
     .success-title { font-size: 16px; font-weight: 700; color: #15803d; }
     .success-sub { font-size: 13px; color: #555; margin-top: 6px; line-height: 1.65; }
-    .copy-btn {
-      display: inline-flex; align-items: center; gap: 6px;
-      margin-top: 14px; padding: 9px 18px;
-      border: 1px solid #ddd; border-radius: 9px;
-      background: #fff; cursor: pointer;
-      font-size: 13px; font-family: inherit;
-      transition: background .12s;
+
+    .error-card {
+      display: none; border: 1px solid #fecaca; border-radius: 14px;
+      padding: 1.2rem 1.25rem; text-align: center;
+      background: #fef2f2; margin-top: 1rem;
     }
-    .copy-btn:hover { background: #f5f5f5; }
-    .preview-label {
-      font-size: 12px; font-weight: 700; color: #555;
-      margin: 14px 0 5px; text-align: left;
-    }
+    .error-title { font-size: 15px; font-weight: 700; color: #dc2626; }
+    .error-sub { font-size: 13px; color: #666; margin-top: 6px; line-height: 1.6; }
+
+    .preview-label { font-size: 12px; font-weight: 700; color: #555; margin: 14px 0 5px; text-align: left; }
     .order-box {
-      background: #f9f9f9; border-radius: 10px;
-      padding: .75rem 1rem; text-align: left;
-      font-size: 12px; line-height: 1.9;
-      color: #555; white-space: pre-wrap;
-      border: 1px solid #eee; word-break: break-all;
+      background: #f9f9f9; border-radius: 10px; padding: .75rem 1rem;
+      text-align: left; font-size: 12px; line-height: 1.9;
+      color: #555; white-space: pre-wrap; border: 1px solid #eee;
     }
 
     @media (max-width: 480px) {
@@ -195,9 +174,15 @@
   </style>
 </head>
 <body>
+
+<!-- 載入中遮罩 -->
+<div class="loading-overlay" id="loading-overlay">
+  <div class="spinner"></div>
+  <div class="loading-text">寄信中，請稍候…</div>
+</div>
+
 <div class="wrap">
 
-  <!-- Store Header -->
   <div class="store-header">
     <div class="store-logo"><i class="ti ti-building-store"></i></div>
     <div>
@@ -209,7 +194,6 @@
     </div>
   </div>
 
-  <!-- Google Maps -->
   <p class="sec-title">店家位置</p>
   <a class="map-btn"
      href="https://www.google.com/maps/search/?api=1&query=桃園市龍潭區中正里龍華路460號"
@@ -227,26 +211,18 @@
     <i class="ti ti-chevron-right" style="color:#ccc;font-size:18px"></i>
   </a>
 
-  <!-- Backend Emails -->
   <p class="sec-title">後台信箱設定</p>
   <div class="card">
     <div class="field">
-      <label for="chef-email">
-        🍳 廚師信箱 *
-        <span class="hint-tag">（只收餐點與數量）</span>
-      </label>
+      <label for="chef-email">🍳 廚師信箱 * <span class="hint-tag">（只收餐點與數量）</span></label>
       <input type="email" id="chef-email" value="chef@example.com">
     </div>
     <div class="field" style="margin-bottom:0">
-      <label for="cashier-email">
-        🧾 櫃台信箱 *
-        <span class="hint-tag">（完整訂單含金額）</span>
-      </label>
+      <label for="cashier-email">🧾 櫃台信箱 * <span class="hint-tag">（完整訂單含金額）</span></label>
       <input type="email" id="cashier-email" value="cashier@example.com">
     </div>
   </div>
 
-  <!-- Customer Info -->
   <p class="sec-title">訂購人資料</p>
   <div class="card">
     <div class="row2">
@@ -260,27 +236,17 @@
       </div>
     </div>
     <div class="field">
-      <label for="cust-email">
-        訂購人信箱
-        <span class="hint-tag">（選填，系統會 CC 一份給您）</span>
-      </label>
+      <label for="cust-email">訂購人信箱 <span class="hint-tag">（選填，系統自動寄確認信給您）</span></label>
       <input type="email" id="cust-email" placeholder="your@email.com">
     </div>
   </div>
 
-  <!-- Pickup -->
   <p class="sec-title">取餐方式</p>
   <div class="card">
     <div class="pickup-tabs">
-      <button class="pickup-tab active" onclick="setPickup('self',this)">
-        <i class="ti ti-walk"></i> 自取
-      </button>
-      <button class="pickup-tab" onclick="setPickup('delivery',this)">
-        <i class="ti ti-motorbike"></i> 外送
-      </button>
-      <button class="pickup-tab" onclick="setPickup('carry',this)">
-        <i class="ti ti-shopping-bag"></i> 外帶
-      </button>
+      <button class="pickup-tab active" onclick="setPickup('self',this)"><i class="ti ti-walk"></i> 自取</button>
+      <button class="pickup-tab" onclick="setPickup('delivery',this)"><i class="ti ti-motorbike"></i> 外送</button>
+      <button class="pickup-tab" onclick="setPickup('carry',this)"><i class="ti ti-shopping-bag"></i> 外帶</button>
     </div>
     <div id="section-self">
       <div class="row2">
@@ -308,66 +274,36 @@
     </div>
   </div>
 
-  <!-- Menu -->
   <p class="sec-title">選擇餐點</p>
   <div class="card">
     <div id="menu-list">
       <div class="menu-item" data-price="148" data-name="古早味滷排飯">
         <div class="menu-thumb"><i class="ti ti-bowl-chopsticks"></i></div>
-        <div class="menu-info">
-          <div class="menu-name">古早味滷排飯</div>
-          <div class="menu-price">單價 $148</div>
-        </div>
-        <div class="qty-ctrl">
-          <button onclick="chg(this,-1)">−</button>
-          <span class="qty-val">0</span>
-          <button onclick="chg(this,1)">+</button>
-        </div>
+        <div class="menu-info"><div class="menu-name">古早味滷排飯</div><div class="menu-price">單價 $148</div></div>
+        <div class="qty-ctrl"><button onclick="chg(this,-1)">−</button><span class="qty-val">0</span><button onclick="chg(this,1)">+</button></div>
         <div class="item-subtotal">—</div>
       </div>
       <div class="menu-item" data-price="130" data-name="排骨飯">
         <div class="menu-thumb"><i class="ti ti-bowl-chopsticks"></i></div>
-        <div class="menu-info">
-          <div class="menu-name">排骨飯</div>
-          <div class="menu-price">單價 $130</div>
-        </div>
-        <div class="qty-ctrl">
-          <button onclick="chg(this,-1)">−</button>
-          <span class="qty-val">0</span>
-          <button onclick="chg(this,1)">+</button>
-        </div>
+        <div class="menu-info"><div class="menu-name">排骨飯</div><div class="menu-price">單價 $130</div></div>
+        <div class="qty-ctrl"><button onclick="chg(this,-1)">−</button><span class="qty-val">0</span><button onclick="chg(this,1)">+</button></div>
         <div class="item-subtotal">—</div>
       </div>
       <div class="menu-item" data-price="110" data-name="魚排飯">
         <div class="menu-thumb"><i class="ti ti-fish"></i></div>
-        <div class="menu-info">
-          <div class="menu-name">魚排飯</div>
-          <div class="menu-price">單價 $110</div>
-        </div>
-        <div class="qty-ctrl">
-          <button onclick="chg(this,-1)">−</button>
-          <span class="qty-val">0</span>
-          <button onclick="chg(this,1)">+</button>
-        </div>
+        <div class="menu-info"><div class="menu-name">魚排飯</div><div class="menu-price">單價 $110</div></div>
+        <div class="qty-ctrl"><button onclick="chg(this,-1)">−</button><span class="qty-val">0</span><button onclick="chg(this,1)">+</button></div>
         <div class="item-subtotal">—</div>
       </div>
       <div class="menu-item" data-price="140" data-name="燒臘飯">
         <div class="menu-thumb"><i class="ti ti-meat"></i></div>
-        <div class="menu-info">
-          <div class="menu-name">燒臘飯</div>
-          <div class="menu-price">單價 $140</div>
-        </div>
-        <div class="qty-ctrl">
-          <button onclick="chg(this,-1)">−</button>
-          <span class="qty-val">0</span>
-          <button onclick="chg(this,1)">+</button>
-        </div>
+        <div class="menu-info"><div class="menu-name">燒臘飯</div><div class="menu-price">單價 $140</div></div>
+        <div class="qty-ctrl"><button onclick="chg(this,-1)">−</button><span class="qty-val">0</span><button onclick="chg(this,1)">+</button></div>
         <div class="item-subtotal">—</div>
       </div>
     </div>
   </div>
 
-  <!-- Note -->
   <p class="sec-title">訂單備註</p>
   <div class="card">
     <div class="field" style="margin-bottom:0">
@@ -376,7 +312,6 @@
     </div>
   </div>
 
-  <!-- Payment -->
   <p class="sec-title">付款方式</p>
   <div class="card">
     <div class="field" style="margin-bottom:0">
@@ -389,10 +324,9 @@
     </div>
   </div>
 
-  <!-- Summary -->
   <p class="sec-title">訂單摘要</p>
   <div class="card">
-    <div class="sum-item-rows" id="sum-item-rows"></div>
+    <div id="sum-item-rows"></div>
     <div class="sum-row"><span>小計</span><span id="sum-sub">$0</span></div>
     <div class="sum-row"><span>稅金及其他費用</span><span>$0</span></div>
     <div class="sum-row" id="dlv-row" style="display:none"><span>外送費</span><span>$50</span></div>
@@ -400,37 +334,37 @@
   </div>
 
   <div class="hint-box">
-    📧 按下「送出訂單」後，系統會依序開啟 <strong>最多三個 Gmail 分頁</strong>：<br>
-    第 1 封 → 廚師（僅餐點）　第 2 封 → 櫃台（完整訂單）　第 3 封 → 客戶確認信（需填信箱）
+    🚀 按下「送出訂單」後，系統會<strong>自動寄出三封信</strong>，不需手動操作：<br>
+    🍳 廚師（備餐通知）　🧾 櫃台（完整訂單）　📩 客戶確認信（填信箱才寄）
   </div>
 
-  <button class="submit-btn" id="submit-btn" onclick="submitOrder()">
-    📨 送出訂單
-  </button>
+  <button class="submit-btn" id="submit-btn" onclick="submitOrder()">🚀 送出訂單</button>
 
-  <!-- Success -->
   <div class="success-card" id="success-card">
     <i class="ti ti-circle-check success-icon"></i>
-    <div class="success-title">兩封 Gmail 分頁已開啟！</div>
+    <div class="success-title">✅ 三封信已自動寄出！</div>
     <div class="success-sub" id="success-sub"></div>
-    <button class="copy-btn" onclick="copyOrder()">
-      <i class="ti ti-copy"></i> 複製完整訂單
-    </button>
     <div class="preview-label">🍳 廚師收到的內容：</div>
     <div class="order-box" id="chef-preview"></div>
     <div class="preview-label">🧾 櫃台收到的內容：</div>
     <div class="order-box" id="cashier-preview"></div>
-    <div class="preview-label" id="cust-preview-label" style="display:none">📩 客戶收到的內容：</div>
+    <div class="preview-label" id="cust-label" style="display:none">📩 客戶收到的內容：</div>
     <div class="order-box" id="cust-preview" style="display:none"></div>
+  </div>
+
+  <div class="error-card" id="error-card">
+    <div class="error-title">❌ 寄信失敗</div>
+    <div class="error-sub" id="error-sub"></div>
   </div>
 
 </div>
 
 <script>
-  let pickupMode = 'self';
-  let lastCashierText = '';
+  // ⚠️ 請將下方網址換成你的 Google Apps Script 部署網址
+  const GAS_URL = 'https://script.google.com/macros/s/AKfycbyh_SUwgMHWIGS7LoRZh5FhbRmbRv81ZglzXw_qOlYNeKEocOq3WFZDambYkHG455k/exec';
 
-  /* ── 取餐方式切換 ── */
+  let pickupMode = 'self';
+
   function setPickup(mode, btn) {
     pickupMode = mode;
     document.querySelectorAll('.pickup-tab').forEach(b => b.classList.remove('active'));
@@ -442,7 +376,6 @@
     calcTotal();
   }
 
-  /* ── 數量增減 ── */
   function chg(btn, delta) {
     const row   = btn.closest('.menu-item');
     const valEl = row.querySelector('.qty-val');
@@ -453,7 +386,6 @@
     calcTotal();
   }
 
-  /* ── 計算合計 ── */
   function calcTotal() {
     let sub = 0, rows = '';
     document.querySelectorAll('.menu-item').forEach(row => {
@@ -470,7 +402,6 @@
     document.getElementById('sum-total').textContent = '$' + (sub + dlv);
   }
 
-  /* ── 取得已點餐點 ── */
   function getItems() {
     const items = [];
     document.querySelectorAll('.menu-item').forEach(row => {
@@ -480,56 +411,20 @@
     return items;
   }
 
-  /* ── 建立廚師信內文（只有餐點） ── */
-  function buildChefBody(name, items, note) {
-    const now   = new Date().toLocaleString('zh-TW', { hour12: false });
-    const lines = items.map(i => `  ${i.name} x ${i.qty} 份`).join('\n');
-    const noteStr = note ? `\n備註：${note}` : '';
-    return `【備餐通知】${now}\n訂購人：${name}\n\n── 餐點明細 ──\n${lines}${noteStr}\n\n請盡快備餐，謝謝！`;
-  }
+  async function submitOrder() {
+    const name         = document.getElementById('name').value.trim();
+    const phone        = document.getElementById('phone').value.trim();
+    const chefEmail    = document.getElementById('chef-email').value.trim();
+    const cashierEmail = document.getElementById('cashier-email').value.trim();
+    const custEmail    = document.getElementById('cust-email').value.trim();
+    const note         = document.getElementById('note').value.trim();
+    const utensils     = document.getElementById('utensils').checked;
+    const pay          = document.getElementById('pay').value;
 
-  /* ── 建立櫃台信內文（完整） ── */
-  function buildCashierBody(name, phone, items, total, modeLabel, pay, note, utensils) {
-    const now   = new Date().toLocaleString('zh-TW', { hour12: false });
-    const lines = items.map(i => `  ${i.name} x ${i.qty} 份  NT$${i.price * i.qty}`).join('\n');
-    const noteStr    = note     ? `\n備註：${note}` : '';
-    const utensilStr = utensils ? '\n索取餐具：是'  : '';
-    return `【隆隆排骨便當 線上訂單】${now}\n\n訂購人：${name}\n電話：${phone}\n取餐方式：${modeLabel}\n付款方式：${pay}${utensilStr}\n\n── 訂單明細 ──\n${lines}\n──────────────\n總計金額：NT$${total}${noteStr}\n\n請備妥結帳，謝謝！`;
-  }
-
-  /* ── 建立客戶確認信內文 ── */
-  function buildCustomerBody(name, items, total, modeLabel, pay, note) {
-    const now   = new Date().toLocaleString('zh-TW', { hour12: false });
-    const lines = items.map(i => `  ${i.name} x ${i.qty} 份  NT$${i.price * i.qty}`).join('\n');
-    const noteStr = note ? `\n備註：${note}` : '';
-    return `親愛的 ${name} 您好，\n\n感謝您向隆隆排骨便當訂購，以下是您的訂單明細：\n\n── 訂單明細 ──\n${lines}\n──────────────\n總計金額：NT$${total}\n取餐方式：${modeLabel}\n付款方式：${pay}${noteStr}\n\n訂單時間：${now}\n店家地址：桃園市龍潭區中正里龍華路460號\n\n如有任何問題請與我們聯繫。\n感謝惠顧，祝您用餐愉快！\n\n隆隆排骨便當 敬上`;
-  }
-
-  /* ── 開啟 Gmail 網頁版 ── */
-  function openGmail(to, subject, body, cc) {
-    let url = 'https://mail.google.com/mail/?view=cm&fs=1'
-            + '&to='      + encodeURIComponent(to)
-            + '&su='      + encodeURIComponent(subject)
-            + '&body='    + encodeURIComponent(body);
-    if (cc) url += '&cc=' + encodeURIComponent(cc);
-    window.open(url, '_blank');
-  }
-
-  /* ── 送出訂單 ── */
-  function submitOrder() {
-    const name        = document.getElementById('name').value.trim();
-    const phone       = document.getElementById('phone').value.trim();
-    const chefEmail   = document.getElementById('chef-email').value.trim();
-    const cashierEmail= document.getElementById('cashier-email').value.trim();
-    const custEmail   = document.getElementById('cust-email').value.trim();
-    const note        = document.getElementById('note').value.trim();
-    const utensils    = document.getElementById('utensils').checked;
-    const pay         = document.getElementById('pay').value;
-
-    if (!name)         { alert('請填寫姓名');    return; }
-    if (!phone)        { alert('請填寫電話');    return; }
-    if (!chefEmail || !chefEmail.includes('@'))    { alert('請填寫廚師信箱');  return; }
-    if (!cashierEmail  || !cashierEmail.includes('@'))  { alert('請填寫櫃台信箱');  return; }
+    if (!name)  { alert('請填寫姓名'); return; }
+    if (!phone) { alert('請填寫電話'); return; }
+    if (!chefEmail    || !chefEmail.includes('@'))    { alert('請填寫廚師信箱');  return; }
+    if (!cashierEmail || !cashierEmail.includes('@')) { alert('請填寫櫃台信箱');  return; }
 
     const items = getItems();
     if (items.length === 0) { alert('請至少選擇一項餐點'); return; }
@@ -539,52 +434,62 @@
     const total     = sub + dlv;
     const modeLabel = pickupMode === 'self' ? '門市自取' : pickupMode === 'delivery' ? '外送到府' : '外帶';
 
-    const chefBody    = buildChefBody(name, items, note);
-    const cashierBody = buildCashierBody(name, phone, items, total, modeLabel, pay, note, utensils);
-    const custBody    = custEmail ? buildCustomerBody(name, items, total, modeLabel, pay, note) : '';
-    lastCashierText   = cashierBody;
+    // 顯示載入中
+    document.getElementById('loading-overlay').classList.add('show');
+    document.getElementById('submit-btn').disabled = true;
+    document.getElementById('success-card').style.display = 'none';
+    document.getElementById('error-card').style.display   = 'none';
 
-    /* 第一封（廚師） */
-    openGmail(chefEmail, `【備餐】${name} 的訂單`, chefBody, '');
+    const payload = { name, phone, custEmail, chefEmail, cashierEmail, items, total, modeLabel, pay, note, utensils };
 
-    /* 1.5 秒後第二封（櫃台） */
-    setTimeout(() => {
-      openGmail(cashierEmail, `【結帳】${name} — NT$${total}`, cashierBody, '');
-    }, 1500);
+    try {
+      const res  = await fetch(GAS_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'text/plain' },
+        body: JSON.stringify(payload)
+      });
+      const json = await res.json();
 
-    /* 3 秒後第三封（客戶確認信，僅限有填信箱） */
-    if (custEmail && custEmail.includes('@')) {
-      setTimeout(() => {
-        openGmail(custEmail, `【訂單確認】隆隆排骨便當 — NT$${total}`, custBody, '');
-      }, 3000);
+      document.getElementById('loading-overlay').classList.remove('show');
+
+      if (json.status === 'ok') {
+        // 建立預覽內文
+        const chefLines    = items.map(i => `  ${i.name} x ${i.qty} 份`).join('\n');
+        const cashierLines = items.map(i => `  ${i.name} x ${i.qty} 份  NT$${i.price * i.qty}`).join('\n');
+        const now          = new Date().toLocaleString('zh-TW', { hour12: false });
+
+        document.getElementById('chef-preview').textContent =
+          `【備餐通知】${now}\n訂購人：${name}\n\n── 餐點明細 ──\n${chefLines}${note ? '\n備註：'+note : ''}\n\n請盡快備餐，謝謝！`;
+
+        document.getElementById('cashier-preview').textContent =
+          `【隆隆排骨便當 線上訂單】${now}\n\n訂購人：${name}\n電話：${phone}\n取餐方式：${modeLabel}\n付款方式：${pay}${utensils ? '\n索取餐具：是' : ''}\n\n── 訂單明細 ──\n${cashierLines}\n──────────────\n總計金額：NT$${total}${note ? '\n備註：'+note : ''}\n\n請備妥結帳，謝謝！`;
+
+        if (custEmail && custEmail.includes('@')) {
+          document.getElementById('cust-label').style.display   = 'block';
+          document.getElementById('cust-preview').style.display = 'block';
+          document.getElementById('cust-preview').textContent   =
+            `親愛的 ${name} 您好，\n\n感謝您向隆隆排骨便當訂購，以下是您的訂單明細：\n\n── 訂單明細 ──\n${cashierLines}\n──────────────\n總計金額：NT$${total}\n取餐方式：${modeLabel}\n付款方式：${pay}${note ? '\n備註：'+note : ''}\n\n訂單時間：${now}\n店家地址：桃園市龍潭區中正里龍華路460號\n\n感謝惠顧，祝您用餐愉快！\n\n隆隆排骨便當 敬上`;
+        }
+
+        document.getElementById('success-sub').textContent =
+          `已自動寄出給廚師（${chefEmail}）、櫃台（${cashierEmail}）${custEmail ? ' 及客戶（'+custEmail+'）' : ''}，無需手動操作！`;
+        document.getElementById('success-card').style.display = 'block';
+        document.getElementById('success-card').scrollIntoView({ behavior: 'smooth' });
+
+      } else {
+        throw new Error(json.message || '未知錯誤');
+      }
+
+    } catch (err) {
+      document.getElementById('loading-overlay').classList.remove('show');
+      document.getElementById('submit-btn').disabled = false;
+      document.getElementById('error-sub').textContent =
+        `錯誤原因：${err.message}\n\n請確認 Google Apps Script 網址是否正確，或稍後再試。`;
+      document.getElementById('error-card').style.display = 'block';
+      document.getElementById('error-card').scrollIntoView({ behavior: 'smooth' });
     }
-
-    /* 顯示成功卡片 */
-    const custMsg = custEmail ? `，3 秒後開啟第三封（客戶確認信：${custEmail}）` : '（未填客戶信箱，不寄確認信）';
-    document.getElementById('success-sub').textContent =
-      `第一封（廚師）已開啟 → 1.5 秒後第二封（櫃台）${custMsg}。請各自確認後按送出。`;
-    document.getElementById('chef-preview').textContent    = chefBody;
-    document.getElementById('cashier-preview').textContent = cashierBody;
-    if (custEmail && custEmail.includes('@')) {
-      document.getElementById('cust-preview-label').style.display = 'block';
-      document.getElementById('cust-preview').style.display       = 'block';
-      document.getElementById('cust-preview').textContent         = custBody;
-    }
-    document.getElementById('success-card').style.display = 'block';
-    document.getElementById('success-card').scrollIntoView({ behavior: 'smooth' });
   }
 
-  /* ── 複製訂單 ── */
-  function copyOrder() {
-    if (!lastCashierText) return;
-    navigator.clipboard.writeText(lastCashierText).then(() => {
-      const btn = document.querySelector('.copy-btn');
-      btn.innerHTML = '<i class="ti ti-check"></i> 已複製！';
-      setTimeout(() => { btn.innerHTML = '<i class="ti ti-copy"></i> 複製完整訂單'; }, 2000);
-    });
-  }
-
-  /* ── 初始化日期 ── */
   const today = new Date().toISOString().split('T')[0];
   ['pdate','ddate','cdate'].forEach(id => {
     const el = document.getElementById(id);
